@@ -19,36 +19,37 @@ RSpec.describe DiaryEntry do
     end 
   end
 
-    describe "#reading_time" do
-      context "given a wpm of some sensible number(200)" do
-        it "returns the ceiling of the number of mins it takes ot read content" do
-          diary_entry = DiaryEntry.new("my_title", "one " * 550) # let's say 550 words the word 'one ' is simply representing a word to be repeated so we don't have insert content 550 words long
-          expect(diary_entry.reading_time(200)).to eq 3 # 550 words divided by 200 wpm = 2.75 however we used ceiling = 3.
+  describe "#reading_time" do
+    context "given a wpm of some sensible number(200)" do
+      it "returns the ceiling of the number of mins it takes ot read content" do
+        diary_entry = DiaryEntry.new("my_title", "one " * 550) # let's say 550 words the word 'one ' is simply representing a word to be repeated so we don't have insert content 550 words long
+        expect(diary_entry.reading_time(200)).to eq 3 # 550 words divided by 200 wpm = 2.75 however we used ceiling = 3.
         end
       end
 
-      context "given a wpm of 0" do
-        it "fails" do  
-          diary_entry = DiaryEntry.new("my_title", "one two three")#one two three is simply example content
-          expect { diary_entry.reading_time(0)}.to raise_error "Reading speed must be above 0 wpm"
+    context "given a wpm of 0" do
+      it "fails" do  
+        diary_entry = DiaryEntry.new("my_title", "one two three")#one two three is simply example content
+        expect { diary_entry.reading_time(0)}.to raise_error "Reading speed must be above 0 wpm"
       end
     end
-end 
-describe "reading_chunk" do
-  context "with a text readable within given minutes" do
-    it "returns the full contents" do
+  end 
+
+  describe "reading_chunk" do
+    context "with a text readable within given minutes" do
+      it "returns the full contents" do
       diary_entry = DiaryEntry.new("my_title", "one two three")
       chunk = diary_entry.reading_chunk(200, 1) #(wpm, mins)
       expect(chunk).to eq "one two three"
-end
-end
+      end
+    end
 
-  context "given a wpm of 0" do
-  it "fails" do  
-    diary_entry = DiaryEntry.new("my_title", "one two three")#one two three is simply example content
-    expect { diary_entry.reading_chunk(0, 5)}.to raise_error "Reading speed must be above 0 wpm"
-end
-end
+    context "given a wpm of 0" do
+      it "fails" do  
+      diary_entry = DiaryEntry.new("my_title", "one two three")#one two three is simply example content
+      expect { diary_entry.reading_chunk(0, 5)}.to raise_error "Reading speed must be above 0 wpm"
+      end
+    end
 
 
 context "with contents unreadable within time" do
