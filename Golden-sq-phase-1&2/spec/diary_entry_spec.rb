@@ -43,6 +43,14 @@ describe "reading_chunk" do
 end
 end
 
+  context "given a wpm of 0" do
+  it "fails" do  
+    diary_entry = DiaryEntry.new("my_title", "one two three")#one two three is simply example content
+    expect { diary_entry.reading_chunk(0, 5)}.to raise_error "Reading speed must be above 0 wpm"
+end
+end
+
+
 context "with contents unreadable within time" do
   it "returns readable chunk" do
   diary_entry = DiaryEntry.new("my_title", "one two three")

@@ -24,6 +24,7 @@ class DiaryEntry
   end
 
   def reading_chunk(wpm, minutes) 
+    fail "Reading speed must be above 0 wpm" unless wpm.positive?
     num_words_we_can_read = wpm * minutes #rpsec uses 200 / 1 = 2 num_words_we_can_can_read
     start_from = @furthest_word_read # this starts at 0,but will be added to.with num_words_we_can_read
     end_at = @furthest_word_read + num_words_we_can_read # starting at 0 + 2(num_words_we_can_read)
