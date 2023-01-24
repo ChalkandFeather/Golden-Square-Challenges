@@ -1,10 +1,13 @@
+# File: factorial.rb
 def factorial(n)
   product = 1
   while n > 0
-     n -= 1
+    binding.irb # Mystery new line!
+    n += 1
     product *= n
-    end
-    product
   end
+  product
+  binding.irb
+end
 
-  puts fatorial(s)
+p factorial(5)

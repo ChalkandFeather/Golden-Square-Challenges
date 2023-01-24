@@ -8,8 +8,7 @@ class MusicTracker
     @track << track
     end
   
-  
-    def list_tracks()
+  def list_tracks()
       return @track
       # returns an array of trasks
     end
