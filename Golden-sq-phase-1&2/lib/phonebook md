@@ -1,0 +1,80 @@
+Phone Numbers Class Design Recipe
+1. Describe the Problem
+
+Put or write the user story here. Add any clarifying notes you might have.
+
+As a user
+So that I can keep track of my phone numbers
+I want to keep a record of al numbers I use in my entries
+
+2. Design the Class Interface
+
+_Include the initializer and public methods with all parameters and return values.
+
+
+class PhoneBook
+  def initializer
+  end
+
+  def extract_numbers(text) #text is a string representing an entry
+  end
+
+  def list 
+    #returns list of strings representing phone numbers
+  end 
+end
+  
+
+3. Create Examples as Tests
+
+Make a list of examples of how the class will behave in different situations.
+
+# EXAMPLE
+
+# 1
+phone_book = PhoneBook.new  #initializing
+phone_book.list # => [] empty list() 
+#use initialize and .list togther to check that the behaviour of the class is correct.
+
+
+# 2
+phone_book = PhoneBook.new  #initializing PhoneBook
+phone_book.extract_numbers("078864545666")
+phone_book.list # => ["078864545666"]
+
+
+# 3
+phone_book = PhoneBook.new  #initializing PhoneBook
+phone_book.extract_numbers("I was calling my friend 078864545666 the other day")
+phone_book.list # => ["078864545666"] # this is the should be extracted
+
+# 4
+phone_book = PhoneBook.new  #initializing PhoneBook
+phone_book.extract_numbers("My faves: 078864545666, 07985736592 ")
+phone_book.list # => ["078864545666", "07985736592"] # this should be extracted
+
+# 5
+phone_book = PhoneBook.new  #initializing PhoneBook
+phone_book.extract_numbers("My faves:")
+phone_book.list # => [] # this should be extracted
+
+# 6 
+phone_book = PhoneBook.new  #initializing PhoneBook
+phone_book.extract_numbers("My friend Sarah is 078864545666")phone_book.extract_numbers("My friend Jo is 07985736592")
+phone_book.list # => ["078864545666", 07985736592]# this should be extracted
+
+
+# 7 - too few digits
+phone_book = PhoneBook.new  #initializing PhoneBook
+phone_book.extract_numbers("My friend Sarah is 78864545666")
+phone_book.list # => []# this should be extracted
+
+# 8 - no duplicates 
+phone_book = PhoneBook.new  #initializing PhoneBook
+phone_book.extract_numbers("My friend Sarah is 078864545666")phone_book.extract_numbers("My pal Sarah is 078864545666")
+phone_book.list # => ["078864545666"]# this should be extracted
+
+Encode each example as a test. You can add to the above list as you go.
+4. Implement the Behaviour
+
+After each test you write, follow the test-driving process of red, green, refactor to implement the behaviour.
